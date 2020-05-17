@@ -11,6 +11,9 @@ public class Afspraak {
     private LocalDate datum;
     private LocalTime tijd;
     private String beschrijving;
+    private Klant klant;
+    private Werknemer werknemer;
+    private Abonnement abonnement;
 
     public Afspraak(LocalDate dat, LocalTime ti, String bes){
         datum = dat;
@@ -24,5 +27,9 @@ public class Afspraak {
 
     public LocalTime getTijd() {
         return tijd;
+    }
+
+    public String getBeschrijving() {
+        return beschrijving;
     }
 }

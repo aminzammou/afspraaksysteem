@@ -14,7 +14,7 @@ class AfspraakTest {
     private LocalDate mindatumm = LocalDate.now().minusDays(2);
     private LocalTime mintijdd = LocalTime.now().minusHours(2);
     Afspraak a = new Afspraak(datumm,tijdd,"hallo");
-    Werknemer werknemer = new Werknemer("hans", "erde", "hans@hotmail.com",0621222222, "test123");
+    Werknemer werknemer = new Werknemer("hans", "erde", "hans@hotmail.com",0623222222, "test123");
 
     @Test
     public void testCreateAfspraak(){

@@ -5,7 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Klant extends Gebruiker{
-    private ArrayList<Klant> alleklanten = new ArrayList();
+    private ArrayList<Afspraak> alleAfspraken = new ArrayList();
+    private ArrayList<Abonnement> alleAbonementen = new ArrayList();
+    private ArrayList<Klant> alleKlanten = new ArrayList();
     private String woonplaats;
     private String straat;
     private int huisnummer;
@@ -20,9 +22,9 @@ public class Klant extends Gebruiker{
     }
 
 
-    public Klant getAfspraakbyMail(String mail) {
+    public Klant getKlantByMail(String mail) {
         Klant nieuwe = null;
-        for (Klant a : alleklanten) {
+        for (Klant a : alleKlanten) {
             if (a.getEmail().equals(mail)) {
                 return a;
             }
@@ -31,15 +33,17 @@ public class Klant extends Gebruiker{
     }
     public boolean createKlant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st){
         boolean resp = false;
-        if (getAfspraakbyMail(em) != null ){
+        if (getKlantByMail(em) != null ){
             resp = false;
         }else {
             resp = true;
-            alleklanten.add(new Klant(nm, acht, em, tel, wacht,wn,str,hs,st));
+            alleKlanten.add(new Klant(nm, acht, em, tel, wacht,wn,str,hs,st));
         }
         return resp;
 
     }
 
-
+    public ArrayList<Klant> getAlleKlanten() {
+        return alleKlanten;
+    }
 }

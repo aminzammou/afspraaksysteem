@@ -18,4 +18,20 @@ public class Gebruiker {
     public String getEmail() {
         return email;
     }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public String getAchternaam() {
+        return achternaam;
+    }
+
+    public int getTelefoonnummer() {
+        return telefoonnummer;
+    }
+
+    public String getWachtwoord() {
+        return wachtwoord;
+    }
 }
