@@ -12,6 +12,7 @@ public class Abonnement {
     public Abonnement(String ser,Date da){
         service = ser;
         date = da;
+        Klant.voegAbonnementToe(this);
     }
 
     public String getService() {

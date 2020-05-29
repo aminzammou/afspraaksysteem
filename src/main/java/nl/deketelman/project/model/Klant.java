@@ -6,44 +6,56 @@ import java.util.ArrayList;
 
 public class Klant extends Gebruiker{
     private ArrayList<Afspraak> alleAfspraken = new ArrayList();
-    private ArrayList<Abonnement> alleAbonementen = new ArrayList();
-    private ArrayList<Klant> alleKlanten = new ArrayList();
+    private static ArrayList<Abonnement> alleAbonementen = new ArrayList();
+//    private static ArrayList<Klant> alleKlanten = new ArrayList();
+    private Abonnement abonement;
     private String woonplaats;
     private String straat;
     private int huisnummer;
     private String stad;
 
-    public Klant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st){
+    public Klant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st, Abonnement abo){
         super(nm,acht,em,tel,wacht);
         woonplaats = wn;
         straat = str;
         huisnummer = hs;
         stad = st;
+        abonement = abo;
+        alleAbonementen.add(abo);
+        Bedrijf.voegKlantToe(this);
+    }
+    public static void voegAbonnementToe(Abonnement a){
+        alleAbonementen.add(a);
     }
 
-
-    public Klant getKlantByMail(String mail) {
-        Klant nieuwe = null;
-        for (Klant a : alleKlanten) {
-            if (a.getEmail().equals(mail)) {
-                return a;
-            }
-        }
-        return nieuwe;
-    }
-    public boolean createKlant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st){
-        boolean resp = false;
-        if (getKlantByMail(em) != null ){
-            resp = false;
-        }else {
-            resp = true;
-            alleKlanten.add(new Klant(nm, acht, em, tel, wacht,wn,str,hs,st));
-        }
-        return resp;
-
+    public static ArrayList<Abonnement> getAlleAbonementen() {
+        return alleAbonementen;
     }
 
-    public ArrayList<Klant> getAlleKlanten() {
-        return alleKlanten;
+    @Override
+    public String toString() {
+        return "Klant{" +
+                "alleAfspraken=" + alleAfspraken +
+                ", abonement=" + abonement +
+                ", woonplaats='" + woonplaats + '\'' +
+                ", straat='" + straat + '\'' +
+                ", huisnummer=" + huisnummer +
+                ", stad='" + stad + '\'' +
+                '}';
     }
+    //    public boolean createKlant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st){
+//        boolean resp = false;
+//        if (getKlantByMail(em) != null ){
+//            resp = false;
+//        }else {
+//            resp = true;
+//            alleKlanten.add(new Klant(nm, acht, em, tel, wacht,wn,str,hs,st));
+//        }
+//        return resp;
+//
+//    }
+
+//    public ArrayList<Klant> getAlleKlanten() {
+//        return alleKlanten;
+//    }
 }

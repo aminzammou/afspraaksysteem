@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!--    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">-->
+
+    <title>home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body onload="getKlante(); getWerknemer()">
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Deketelman Afspraak-Systeem </div>
+        <div class="list-group list-group-flush">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        Afspraken
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="overzicht.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        Overzicht
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom">
+            <button type="button" class="btn btn-outline-success">+ nieuwe afspraak</button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="disabled btn btn-sm btn-outline-secondary">Jhon doe</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Uitloggen</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <h1 class="mt-4">Afspraak aanmaken</h1>
+            <hr>
+            <form id="postAfspraak" class="needs-validation" novalidate>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="klant">Klant</label>
+                        <select class="custom-select" name="klant" id="klant" required>
+                            <option selected disabled value="">Choose...</option>
+<!--                            <option id="tester">klant@hotmail.com</option>-->
+                        </select>
+                        <div class="invalid-feedback">
+                            Kies een klant
+                        </div>
+                        <div class="valid-feedback">
+                            Correct gekozen!
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="werknemer">Werknemer</label>
+                        <select class="custom-select" name="werknemer" id="werknemer" required>
+                            <option selected disabled value="">Choose...</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Kies een werknemer
+                        </div>
+                        <div class="valid-feedback">
+                            Correct gekozen!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="datum">datum</label>
+                        <input type="date" class="form-control" name="datum" id="datum" required>
+                        <div class="invalid-feedback">
+                            Kies een correcte datum!
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="tijd">tijd</label>
+                        <input type="time" min="09:00" max="18:00" class="form-control" name="tijd" id="tijd" value="12:00" required  >
+                        <span class="validity"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Beschrijving</span>
+                        </div>
+                        <textarea class="form-control" name="beschrijving" id="beschrijving" aria-label="With textarea"></textarea>
+                        <div class="valid-feedback">
+                            Correct gekozen!
+                        </div>
+                        <div class="invalid-feedback">
+                            Je moet een beschrijving mee geven!
+                        </div>
+                    </div>
+                </div>
+<!--                <button id="submitAfspraak"  type="submit">Submit form</button>-->
+                <div class="row">
+                    <div class="col-md-1 mt-3">
+                        <input class="btn btn-outline-info" type="button" id="submitAfspraak" value="Verzenden">
+                    </div>
+                    <div class="col-md-1 mt-3">
+                        <input class="btn btn-outline-danger" type="reset" id="reset" value="Reset">
+                    </div>
+                </div>
+            </form>
+<!--            <p id="test"></p>-->
+
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+<script src="assets/js/javascript.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+</html>

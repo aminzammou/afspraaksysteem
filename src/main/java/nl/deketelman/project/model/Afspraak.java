@@ -15,10 +15,20 @@ public class Afspraak {
     private Werknemer werknemer;
     private Abonnement abonnement;
 
-    public Afspraak(LocalDate dat, LocalTime ti, String bes){
+    public void setKlant(Klant klant) {
+        this.klant = klant;
+    }
+
+    public void setWerknemer(Werknemer werknemer) {
+        this.werknemer = werknemer;
+    }
+
+    public Afspraak(LocalDate dat, LocalTime ti, String bes, Klant kl, Werknemer we){
         datum = dat;
         tijd = ti;
         beschrijving = bes;
+        klant = kl;
+        werknemer = we;
     }
 
     public LocalDate getDatum() {

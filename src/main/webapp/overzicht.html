@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>overzicht</title>
+</head>
+<body onload="getLists()">
+<p id="demo"></p>
+<script>
+    function getLists(event) {
+
+        fetch("restservices/afspraken", {method: 'GET'})
+            .then(response => response.json())
+            .then(myJson => document.getElementById("demo").textContent = JSON.stringify(myJson))
+            .catch(error => console.log(error));
+    }
+    // document.querySelector("#lists").addEventListener("click", getLists);
+</script>
+</body>
+</html>
