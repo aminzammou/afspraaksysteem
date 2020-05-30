@@ -1,12 +1,13 @@
 package nl.deketelman.project.model;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Afspraak {
+public class Afspraak implements Serializable {
 
     private LocalDate datum;
     private LocalTime tijd;

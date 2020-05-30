@@ -46,7 +46,7 @@ public class AfsprakenMiddelen {
         Boolean list = Bedrijf.createAfspraak(datum, tijd, beschrijving, klant, werknemer);
         if (!list){
             Map<String, String> messages = new HashMap<>();
-            messages.put("error","Sommeting went wrong");
+            messages.put("error"," Er bestaat al een afspraak om deze tijd, kies aub een andere afspraak");
             return Response.status(409).entity(messages).build();
         }
         return Response.ok(list).build();

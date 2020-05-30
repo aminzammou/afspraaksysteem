@@ -80,12 +80,11 @@
       <artifactId>jjwt</artifactId>
       <version>0.9.1</version>
     </dependency>
-
-    <!--    <dependency> to connect your blob service -->
-    <!--      <groupId>com.azure</groupId>-->
-    <!--      <artifactId>azure-storage-blob</artifactId>-->
-    <!--      <version>12.6.0</version>-->
-    <!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>com.azure</groupId>-->
+<!--      <artifactId>azure-storage-blob</artifactId>-->
+<!--      <version>12.4.0</version>-->
+<!--    </dependency>-->
 
     <!--    <dependency> for authentication later on -->
     <!--      <groupId>io.jsonwebtoken</groupId>-->

@@ -1,13 +1,14 @@
 package nl.deketelman.project.setup;
 
 import nl.deketelman.project.model.Abonnement;
-import nl.deketelman.project.model.Bedrijf;
 import nl.deketelman.project.model.Klant;
 import nl.deketelman.project.model.Werknemer;
+//import nl.deketelman.project.webservices.PersistenceManager;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.io.IOException;
 import java.util.Date;
 
 @WebListener
@@ -15,6 +16,18 @@ public class MyServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+//        try {
+//            PersistenceManager.loadWorldFromAzure();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            PersistenceManager.saveWorldToAzure();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         Werknemer werknemer = new Werknemer("hans", "erde", "werknemer@hotmail.com",0623222222, "test123");
         Date date = new Date();
         Abonnement abonnement = new Abonnement("sanitair",date);
@@ -28,6 +41,7 @@ public class MyServletContextListener implements ServletContextListener {
     }
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("terminating application");
+
+        System.out.println("Applicatie sluit af");
     }
 }

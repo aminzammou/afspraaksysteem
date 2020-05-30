@@ -1,10 +1,11 @@
 package nl.deketelman.project.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Klant extends Gebruiker{
+public class Klant extends Gebruiker implements Serializable {
     private ArrayList<Afspraak> alleAfspraken = new ArrayList();
     private static ArrayList<Abonnement> alleAbonementen = new ArrayList();
 //    private static ArrayList<Klant> alleKlanten = new ArrayList();

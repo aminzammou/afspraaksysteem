@@ -1,9 +1,10 @@
 package nl.deketelman.project.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Abonnement {
+public class Abonnement implements Serializable {
 
     private String service;
     private Date date;

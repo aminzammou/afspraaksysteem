@@ -65,73 +65,102 @@
         <div class="container-fluid">
             <h1 class="mt-4">Afspraak aanmaken</h1>
             <hr>
-            <form id="postAfspraak" class="needs-validation" novalidate>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="klant">Klant</label>
-                        <select class="custom-select" name="klant" id="klant" required>
-                            <option selected disabled value="">Choose...</option>
-<!--                            <option id="tester">klant@hotmail.com</option>-->
-                        </select>
-                        <div class="invalid-feedback">
-                            Kies een klant
+            <div class="container">
+                <form id="postAfspraak" class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="klant">Klant</label>
+                            <select class="custom-select form-control" name="klant" id="klant" required>
+                                <option selected disabled value="">Choose...</option>
+    <!--                            <option id="tester">klant@hotmail.com</option>-->
+                            </select>
+                            <div class="invalid-feedback">
+                                Kies een klant!
+                            </div>
+                            <div class="valid-feedback">
+                                Correct gekozen!
+                            </div>
                         </div>
-                        <div class="valid-feedback">
-                            Correct gekozen!
+                        <div class="col-md-6 mb-3">
+                            <label for="werknemer">Werknemer</label>
+                            <select class="custom-select form-control" name="werknemer" id="werknemer" required>
+                                <option selected disabled value="">Choose...</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Kies een werknemer!
+                            </div>
+                            <div class="valid-feedback">
+                                Correct gekozen!
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="werknemer">Werknemer</label>
-                        <select class="custom-select" name="werknemer" id="werknemer" required>
-                            <option selected disabled value="">Choose...</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Kies een werknemer
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="datum">datum</label>
+                            <input type="date" class="form-control" name="datum" id="datum" required>
+                            <div class="valid-feedback">
+                                Correct ingevuld!
+                            </div>
+                            <div class="invalid-feedback">
+                                Kies een correcte datum!
+                            </div>
                         </div>
-                        <div class="valid-feedback">
-                            Correct gekozen!
+                        <div class="col-md-6 mb-3">
+                            <label for="tijd">tijd</label>
+                            <input type="time" min="09:00" max="18:00" class="form-control tijd_input" name="tijd" id="tijd" value="12:00" required  >
+                            <div class="valid-feedback">
+                                Correct ingevuld!
+                            </div>
+                            <div class="invalid-feedback">
+                                Kies een tijd tussen 9:00 en 18:00!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Beschrijving</span>
+                            </div>
+                            <textarea class="form-control" name="beschrijving" id="beschrijving" aria-label="With textarea" required></textarea>
+                            <div class="valid-feedback">
+                                Correct ingevuld!
+                            </div>
+                            <div class="invalid-feedback">
+                                Je moet een beschrijving mee geven!
+                            </div>
+                        </div>
+                    </div>
+    <!--                <button id="submitAfspraak"  type="submit">Submit form</button>-->
+                    <div class="row">
+                        <div class="col-2 mt-3">
+                            <input class="btn btn-outline-info" type="button" id="submitAfspraak" value="Verzenden">
+                        </div>
+                        <div class="col-2 mt-3">
+                            <input class="btn btn-outline-danger" type="reset" id="reset" value="Reset">
+                        </div>
+
+                    </div>
+                </form>
+                <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div id="exampleModalLabel" class="modal-header">
+                                <h5 class="modal-title" id="modelHeader">tekst :</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p id="infoTekst" ></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <label for="datum">datum</label>
-                        <input type="date" class="form-control" name="datum" id="datum" required>
-                        <div class="invalid-feedback">
-                            Kies een correcte datum!
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="tijd">tijd</label>
-                        <input type="time" min="09:00" max="18:00" class="form-control" name="tijd" id="tijd" value="12:00" required  >
-                        <span class="validity"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Beschrijving</span>
-                        </div>
-                        <textarea class="form-control" name="beschrijving" id="beschrijving" aria-label="With textarea"></textarea>
-                        <div class="valid-feedback">
-                            Correct gekozen!
-                        </div>
-                        <div class="invalid-feedback">
-                            Je moet een beschrijving mee geven!
-                        </div>
-                    </div>
-                </div>
-<!--                <button id="submitAfspraak"  type="submit">Submit form</button>-->
-                <div class="row">
-                    <div class="col-md-1 mt-3">
-                        <input class="btn btn-outline-info" type="button" id="submitAfspraak" value="Verzenden">
-                    </div>
-                    <div class="col-md-1 mt-3">
-                        <input class="btn btn-outline-danger" type="reset" id="reset" value="Reset">
-                    </div>
-                </div>
-            </form>
-<!--            <p id="test"></p>-->
+            </div>
+            <p id="test"></p>
 
         </div>
     </div>

@@ -1,6 +1,8 @@
 package nl.deketelman.project.model;
 
-public class Gebruiker {
+import java.io.Serializable;
+
+public class Gebruiker implements Serializable {
     private String naam;
     private String achternaam;
     private String email;
