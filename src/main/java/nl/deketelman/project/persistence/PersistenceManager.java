@@ -1,4 +1,4 @@
-//package nl.deketelman.project.webservices;
+//package nl.deketelman.project.persistence;
 //
 //import com.azure.storage.blob.BlobClient;
 //import com.azure.storage.blob.BlobContainerClient;
@@ -12,7 +12,7 @@
 //public class PersistenceManager {
 //    private final static String ENDPOINT = "https://ironamin.blob.core.windows.net/";
 //    private final static String SASTOKEN = "?sv=2019-10-10&ss=b&srt=co&sp=rwdlacx&se=2020-05-31T02:48:46Z&st=2020-05-30T18:48:46Z&spr=https&sig=abXa7dviNPRPtfNV7pwPCpiq9PFSZSCmiN%2BBjQNEA5w%3D";
-//    private final static String CONTAINER = "wereldcontainer";
+//    private final static String CONTAINER = "afsprakencontainer";
 //
 //    private static BlobContainerClient blobContainer = new BlobContainerClientBuilder().endpoint(ENDPOINT).sasToken(SASTOKEN).containerName(CONTAINER).buildClient();
 //
