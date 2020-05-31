@@ -3,7 +3,7 @@ package nl.deketelman.project.setup;
 import nl.deketelman.project.model.Abonnement;
 import nl.deketelman.project.model.Klant;
 import nl.deketelman.project.model.Werknemer;
-//import nl.deketelman.project.persistence.PersistenceManager;
+import nl.deketelman.project.persistence.PersistenceManager;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -36,11 +36,11 @@ public class MyServletContextListener implements ServletContextListener {
     }
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-//        try {
-//            PersistenceManager.saveWorldToAzure();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            PersistenceManager.saveWorldToAzure();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("Applicatie sluit af");
     }
 }
