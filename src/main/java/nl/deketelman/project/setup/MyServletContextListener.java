@@ -17,7 +17,7 @@ public class MyServletContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 //        try {
-//            Object a = klant.getAlleAbonementen();
+//
 //            PersistenceManager.loadWorldFromAzure();
 //        } catch (IOException | ClassNotFoundException e) {
 //            e.printStackTrace();
@@ -28,6 +28,7 @@ public class MyServletContextListener implements ServletContextListener {
         Abonnement abonnement1 = new Abonnement("verwarming",date);
         Klant klant = new Klant("hans", "rie", "klant@hotmail.com",0621214532, "test123", "leidserijn","teststraat",10,"Utrecht",abonnement);
         klant.voegAbonnementToe(abonnement1);
+        Object a = klant.getAlleAbonementen();
 
 //        Bedrijf.voegKlantToe(klant);
 //        System.out.println(Bedrijf.getAlleKlanten());
