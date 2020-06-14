@@ -27,6 +27,16 @@ public class Bedrijf implements Serializable {
         return nieuwe;
     }
 
+    public static ArrayList<Afspraak> getAfspraakbyOnlyDate(LocalDate datum) {
+        ArrayList<Afspraak> nieuwe = new ArrayList();
+        for (Afspraak a : alleAfspraken) {
+            if (a.getDatum().equals(datum)) {
+                nieuwe.add(a);
+            }
+        }
+        return nieuwe;
+    }
+
     public static ArrayList<Werknemer> getAlleWerknemers() {
         return alleWerknemers;
     }

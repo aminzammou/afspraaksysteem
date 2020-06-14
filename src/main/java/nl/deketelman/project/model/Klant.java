@@ -33,6 +33,10 @@ public class Klant extends Gebruiker implements Serializable {
         return alleAbonementen;
     }
 
+    public ArrayList<Afspraak> getAlleAfspraken() {
+        return alleAfspraken;
+    }
+
     @Override
     public String toString() {
         return "Klant{" +
@@ -43,6 +47,22 @@ public class Klant extends Gebruiker implements Serializable {
                 ", huisnummer=" + huisnummer +
                 ", stad='" + stad + '\'' +
                 '}';
+    }
+
+    public String getWoonplaats() {
+        return woonplaats;
+    }
+
+    public String getStraat() {
+        return straat;
+    }
+
+    public int getHuisnummer() {
+        return huisnummer;
+    }
+
+    public String getStad() {
+        return stad;
     }
     //    public boolean createKlant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st){
 //        boolean resp = false;

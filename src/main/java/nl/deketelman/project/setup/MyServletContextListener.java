@@ -27,6 +27,7 @@ public class MyServletContextListener implements ServletContextListener {
         Abonnement abonnement = new Abonnement("sanitair",date);
         Abonnement abonnement1 = new Abonnement("verwarming",date);
         Klant klant = new Klant("hans", "rie", "klant@hotmail.com",0621214532, "test123", "leidserijn","teststraat",10,"Utrecht",abonnement);
+        Klant klant2 = new Klant("jos", "brie", "jos@hotmail.com",062222222, "ww123", "utrecht","strStraat",10,"Utrecht",abonnement);
         klant.voegAbonnementToe(abonnement1);
         Object a = klant.getAlleAbonementen();
 

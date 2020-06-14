@@ -4,6 +4,7 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import nl.deketelman.project.model.Afspraak;
+import nl.deketelman.project.model.AlleKlassen;
 import nl.deketelman.project.model.Bedrijf;
 
 import java.io.*;
@@ -40,7 +41,8 @@ public class PersistenceManager {
         }
     }
     public static void saveWorldToAzure() throws IOException {
-        ArrayList<Afspraak> bedrijf = Bedrijf.getalleafspraken();
+//        ArrayList<Afspraak> bedrijf = Bedrijf.getalleafspraken();
+        AlleKlassen alleKlassen = new AlleKlassen();
         if (!blobContainer.exists()){
             blobContainer.create();
         }
@@ -48,7 +50,7 @@ public class PersistenceManager {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream ois = new ObjectOutputStream(baos);
-        ois.writeObject(bedrijf);
+        ois.writeObject(alleKlassen);
 
         byte[] bytez = baos.toByteArray();
 

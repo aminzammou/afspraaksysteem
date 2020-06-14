@@ -43,4 +43,12 @@ public class Afspraak implements Serializable {
     public String getBeschrijving() {
         return beschrijving;
     }
+
+    public Klant getKlant() {
+        return klant;
+    }
+
+    public Werknemer getWerknemer() {
+        return werknemer;
+    }
 }

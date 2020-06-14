@@ -76,10 +76,14 @@ function getKlante(event) {
         .then(response => response.json())
         .then(myJson => {
             const selc = document.getElementById("klant");
-            const opti = document.createElement("option");
-            opti.text = (JSON.stringify(myJson[0].naam)).replace(/"/g, "");
-            opti.value = (JSON.stringify(myJson[0].email)).replace(/"/g, "");
-            selc.add(opti, null);
+
+            for (let i in myJson){
+                const opti = document.createElement("option");
+                opti.text = (JSON.stringify(myJson[i].naam)).replace(/"/g, "");
+                opti.value = (JSON.stringify(myJson[i].email)).replace(/"/g, "");
+                selc.add(opti, null);
+            }
+
         } )
         .catch(error => console.log(error));
 
@@ -106,6 +110,54 @@ function getWerknemer(event) {
 //     selc.appendChild(opi);
 //
 // })
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+
+function getListsVanVandaag(event) {
+
+    fetch("restservices/afspraken/AfsprakenVandaag", { method: 'GET' })
+        .then(response => response.json())
+        .then(myJson => {
+            tabelVanVandaag(myJson);
+        })
+        // .then(myJson => console.log(myJson))
+        // .then(myJson => tabelVanVandaag(myJson))
+        .catch(error => console.log(error));
+}
+function tabelVanVandaag(data) {
+    let tabelBody = document.getElementById("afsprakenTabelVandaag");
+    let tableRowTemplate = document.getElementById("tableRowTemplate");
+    console.log(data)
+    data.forEach(afspraak => {
+        console.log(afspraak);
+        let tableRow = tableRowTemplate.content.cloneNode(true);
+        tableRow.querySelector(".meer-info").addEventListener("click", () => {
+            /* Voeg tekst van modal toe */
+            let naam = document.getElementById("klantNaam");
+            let achternaam = document.getElementById("klantAchternaam");
+            let straat = document.getElementById("straat");
+            let huisnummer = document.getElementById("huisnummer");
+            let stad = document.getElementById("stad");
+
+            naam.textContent = afspraak['klant'].naam;
+            achternaam.textContent = afspraak['klant'].achternaam;
+            straat.textContent = afspraak['klant'].straat;
+            huisnummer.textContent = afspraak['klant'].huisnummer;
+            stad.textContent = afspraak['klant'].stad;
+        });
+        tableRow.querySelector(".klantNaamTable").textContent = afspraak['klant'].naam;
+        tableRow.querySelector(".werknemerNaamTable").textContent = afspraak['werknemer'].naam;
+        tableRow.querySelector(".datumTable").textContent = `${afspraak.datum.year} - ${afspraak.datum.monthValue} - ${afspraak.datum.dayOfMonth}`;
+        tableRow.querySelector(".tijdTable").textContent = `${JSON.stringify(afspraak.tijd.hour)}:${JSON.stringify(afspraak.tijd.minute)}`;
+        tableRow.querySelector(".beschrijvingTable").textContent = afspraak.beschrijving;
+        tabelBody.appendChild(tableRow);
+    });
+}
+var van = new Date();
+var date = van.getFullYear()+'-'+(van.getMonth()+1)+'-'+van.getDate();
+document.getElementById('datum-header').innerHTML = date;
 
 
 

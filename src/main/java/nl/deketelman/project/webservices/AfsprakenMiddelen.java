@@ -24,7 +24,21 @@ public class AfsprakenMiddelen {
         List<Afspraak> list = Bedrijf.getalleafspraken();
         if (list == null){
             Map<String, String> messages = new HashMap<>();
-            messages.put("error","Shop does not exist");
+            messages.put("error","Afspraak does not exist");
+            return Response.status(409).entity(messages).build();
+        }
+        return Response.ok(list).build();
+    }
+
+    @GET
+    @Path("AfsprakenVandaag")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAfsprakenVanVandaag() {
+        LocalDate a = LocalDate.now();
+        List<Afspraak> list = Bedrijf.getAfspraakbyOnlyDate(a);
+        if (list == null){
+            Map<String, String> messages = new HashMap<>();
+            messages.put("error","Afspraak does not exist");
             return Response.status(409).entity(messages).build();
         }
         return Response.ok(list).build();
