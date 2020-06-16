@@ -21,12 +21,19 @@ document.querySelector("#submitAfspraak").addEventListener("click",function (eve
     if (formCheck.checkValidity() === true){
         var formData = new FormData(document.querySelector("#postAfspraak"));
         var encData = new URLSearchParams(formData.entries());
+        var fetchOptions = {
+            method: 'POST',
+            body: encData,
+            headers : {
+                'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
+            }
+        }
         let modT = document.getElementById("infoTekst");
         let modH = document.getElementById("modelHeader");
 
 
 
-        fetch("/restservices/afspraken", {method: 'POST', body: encData})
+        fetch("/restservices/afspraken", fetchOptions)
             .then(response => response.json())
             .then(function (myJson) {
                 if (myJson === true){
@@ -116,8 +123,14 @@ $("#menu-toggle").click(function(e) {
 });
 
 function getListsVanVandaag(event) {
+    var fetchOptions = {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+        }
+    }
 
-    fetch("restservices/afspraken/AfsprakenVandaag", { method: 'GET' })
+    fetch("restservices/afspraken/AfsprakenVandaag",fetchOptions)
         .then(response => response.json())
         .then(myJson => {
             tabelVanVandaag(myJson);
@@ -159,5 +172,29 @@ var van = new Date();
 var date = van.getFullYear()+'-'+(van.getMonth()+1)+'-'+van.getDate();
 document.getElementById('datum-header').innerHTML = date;
 
+// function login(event){
+//     var formData = new FormData(document.querySelector("#loginform"));
+//     var encData = new URLSearchParams(formData.entries());
+//
+//     fetch("/restservices/authentication", {method: 'POST', body: encData})
+//         .then(function(response){
+//             if (response.ok) return response.json();
+//             else throw alert("WRONG username/password");
+//         })
+//         .then(myJson => {
+//             window.sessionStorage.setItem("myJWT",myJson.JWT);
+//             window.location.replace('index.html')
+//             window.location.href = "hoofdpagina.html";
+//
+//         })
+//         .catch(error => console.log(error));
+//
+// }
+// document.querySelector("#login").addEventListener("click",login);
 
+function logout(event) {
+    window.sessionStorage.removeItem("myJWT");
+    window.location.href = "index.html";
+}
+document.querySelector("#loguit").addEventListener("click",logout);
 

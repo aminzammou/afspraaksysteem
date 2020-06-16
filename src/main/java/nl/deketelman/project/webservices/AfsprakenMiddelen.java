@@ -7,8 +7,11 @@ import nl.deketelman.project.model.Werknemer;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import java.security.Principal;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,6 +21,7 @@ import java.util.*;
 public class AfsprakenMiddelen {
 
     @GET
+    @RolesAllowed({"user"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAfspraken() {
 
@@ -31,6 +35,7 @@ public class AfsprakenMiddelen {
     }
 
     @GET
+    @RolesAllowed({"user"})
     @Path("AfsprakenVandaag")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAfsprakenVanVandaag() {
@@ -65,4 +70,11 @@ public class AfsprakenMiddelen {
         }
         return Response.ok(list).build();
     }
+//    @GET
+//    @Path("users")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getUser(@Context SecurityContext user) {
+//        Principal a = user.getUserPrincipal();
+//        return Response.ok(a.getName()).build();
+//    }
 }

@@ -235,8 +235,14 @@
 <!--<script src="assets/js/javascript.js"></script>-->
 <script>
     function getLists(event) {
+        var fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
+            }
+        }
 
-        fetch("restservices/afspraken", { method: 'GET' })
+        fetch("restservices/afspraken", fetchOptions)
             .then(response => response.json())
             // .then(myJson => document.getElementById("demo").textContent = JSON.stringify(myJson))
             // .then(myJson => console.log(myJson))

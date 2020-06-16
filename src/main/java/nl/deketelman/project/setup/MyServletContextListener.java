@@ -1,6 +1,7 @@
 package nl.deketelman.project.setup;
 
 import nl.deketelman.project.model.Abonnement;
+import nl.deketelman.project.model.Gebruiker;
 import nl.deketelman.project.model.Klant;
 import nl.deketelman.project.model.Werknemer;
 import nl.deketelman.project.persistence.PersistenceManager;
@@ -30,6 +31,8 @@ public class MyServletContextListener implements ServletContextListener {
         Klant klant2 = new Klant("jos", "brie", "jos@hotmail.com",062222222, "ww123", "utrecht","strStraat",10,"Utrecht",abonnement);
         klant.voegAbonnementToe(abonnement1);
         Object a = klant.getAlleAbonementen();
+
+//        System.out.println(Gebruiker.getAlleGebruikers());
 
 //        Bedrijf.voegKlantToe(klant);
 //        System.out.println(Bedrijf.getAlleKlanten());

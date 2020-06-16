@@ -1,13 +1,18 @@
 package nl.deketelman.project.model;
 
+import javax.security.auth.Subject;
 import java.io.Serializable;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Gebruiker implements Serializable {
+public class Gebruiker implements Serializable, Principal {
     private String naam;
     private String achternaam;
-    private String email;
+    private String email, role;
     private int telefoonnummer;
     private String wachtwoord;
+    private static List<Gebruiker> alleGebruikers = new ArrayList<>();
 
     public Gebruiker(String nm,String acht,  String em,int tel, String wacht){
         naam = nm;
@@ -15,6 +20,43 @@ public class Gebruiker implements Serializable {
         email = em;
         telefoonnummer = tel;
         wachtwoord = wacht;
+        role = "user";
+        alleGebruikers.add(this);
+    }
+    public void setAdmin(){
+        role="beheerder";
+    }
+
+    public static List<Gebruiker> getAlleGebruikers() {
+        return alleGebruikers;
+    }
+    public static Gebruiker getUserByMail(String email){
+        return alleGebruikers.stream()
+                .filter(e -> e.email.equals(email))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public static String validateLogin(String email, String wachtwoord){
+        Gebruiker found = getUserByMail(email);
+        if (found!=null) return wachtwoord.equals(found.wachtwoord) ? found.getRole(): null;
+        return null;
+    }
+
+    public boolean implies(Subject subject) {
+        return false;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public String getRealName() {
+        return naam;
+    }
+
+    @Override
+    public String getName() {
+        return email;
     }
 
     public String getEmail() {

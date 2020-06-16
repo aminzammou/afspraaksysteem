@@ -1,0 +1,14 @@
+.login,
+.image {
+    min-height: 100vh;
+}
+
+.bg-image {
+
+
+    /* background-image: url("dad-and-son-tidying-up-bathroom-3867616.jpg"); */
+    background-image: url("../images/dad-and-son-tidying-up-bathroom-3867616.jpg");
+    background-size: cover;
+    background-position: center center;
+    filter: blur(4px);
+}
