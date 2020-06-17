@@ -23,7 +23,7 @@ public class Klant extends Gebruiker implements Serializable {
         stad = st;
         abonement = abo;
         alleAbonementen.add(abo);
-        Bedrijf.voegKlantToe(this);
+        Bedrijf.getAlles().voegKlantToe(this);
     }
     public static void voegAbonnementToe(Abonnement a){
         alleAbonementen.add(a);

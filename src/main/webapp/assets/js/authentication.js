@@ -1,28 +1,3 @@
-// function getUser() {
-//     var fetchOptions = {
-//         method: 'GET',
-//         headers: {
-//             'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
-//         }
-//     }
-//
-//     fetch("restservices/afspraken/users", fetchOptions)
-//         .then(response => response.json())
-//         .then(myJson => console.log(myJson))
-//         .catch(error => console.log(error));
-// }
-function parseJwt(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
-};
-
-
-
 const formCheck = document.querySelector('.needs-validation');
 function login(event){
     if (formCheck.checkValidity() === false){
@@ -36,12 +11,15 @@ function login(event){
         fetch("/restservices/authentication", {method: 'POST', body: encData})
             .then(function(response){
                 if (response.ok) return response.json();
-                alert("WRONG username/password");
+                alert("VERKEERDE Email/Wachtwoord");
             })
             .then(myJson => {
                 window.sessionStorage.setItem("myJWT",myJson.JWT);
-                parseJwt("myJWT");
-                // window.location.href = "hoofdpagina.html";
+                if (jwt_decode(myJson.JWT).role === "werknemer"){
+                    window.location.href = "hoofdpagina.html";
+                }else {
+                    window.location.href = "klantpagina.html";
+                };
 
             })
             .catch(error => console.log(error));

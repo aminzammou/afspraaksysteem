@@ -20,11 +20,16 @@ public class Gebruiker implements Serializable, Principal {
         email = em;
         telefoonnummer = tel;
         wachtwoord = wacht;
-        role = "user";
+        role = "klant";
         alleGebruikers.add(this);
+//        alleGebruikers.add(Bedrijf.getAlles().getAlleKlanten());
     }
     public void setAdmin(){
         role="beheerder";
+    }
+
+    public void setWerknemer(){
+        role="werknemer";
     }
 
     public static List<Gebruiker> getAlleGebruikers() {

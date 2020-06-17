@@ -4,7 +4,7 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
 import nl.deketelman.project.model.Afspraak;
-import nl.deketelman.project.model.AlleKlassen;
+//import nl.deketelman.project.model.AlleKlassen;
 import nl.deketelman.project.model.Bedrijf;
 
 import java.io.*;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class PersistenceManager {
     private final static String ENDPOINT = "https://ironamin.blob.core.windows.net/";
-    private final static String SASTOKEN = "?sv=2019-10-10&ss=b&srt=sco&sp=rwdlacx&se=2020-06-01T01:49:29Z&st=2020-05-31T17:49:29Z&spr=https&sig=f0VayHO014xEIsqTGiulpMw3slA81fMNYaIm8T5%2FCCY%3D";
+    private final static String SASTOKEN = "?sv=2019-10-10&ss=b&srt=sco&sp=rwdlacx&se=2020-06-25T18:44:53Z&st=2020-06-17T10:44:53Z&spr=https&sig=wfTiWdsindrUlqOEsXn2xaAa6HnILayK6LkhwUt3EPM%3D";
     private final static String CONTAINER = "afsprakencontainer";
 
     private static BlobContainerClient blobContainer = new BlobContainerClientBuilder().endpoint(ENDPOINT).sasToken(SASTOKEN).containerName(CONTAINER).buildClient();
@@ -31,9 +31,8 @@ public class PersistenceManager {
                 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
                 ObjectInputStream ois = new ObjectInputStream(bais);
 
-                Afspraak wereld = (Afspraak) ois.readObject();
-//                World.setWorld(wereld);
-                System.out.println(wereld);
+                Bedrijf bedrijf = (Bedrijf) ois.readObject();
+                Bedrijf.setBedrijf(bedrijf);
 
                 baos.close();
                 ois.close();
@@ -41,12 +40,13 @@ public class PersistenceManager {
         }
     }
     public static void saveWorldToAzure() throws IOException {
-//        ArrayList<Afspraak> bedrijf = Bedrijf.getalleafspraken();
-        AlleKlassen alleKlassen = new AlleKlassen();
+
         if (!blobContainer.exists()){
             blobContainer.create();
         }
         BlobClient blob = blobContainer.getBlobClient("afsprakenblob");
+        Bedrijf alleKlassen = Bedrijf.getAlles();
+//        AlleKlassen alleKlassen = new AlleKlassen();
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream ois = new ObjectOutputStream(baos);

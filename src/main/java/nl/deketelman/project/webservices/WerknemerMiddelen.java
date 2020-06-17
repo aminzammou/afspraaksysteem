@@ -19,7 +19,7 @@ public class WerknemerMiddelen {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWerknemer() {
-        List<Werknemer> list = Bedrijf.getAlleWerknemers();
+        List<Werknemer> list = Bedrijf.getAlles().getAlleWerknemers();
         if (list == null){
             Map<String, String> messages = new HashMap<>();
             messages.put("error","Werknemer bestaat niet!");

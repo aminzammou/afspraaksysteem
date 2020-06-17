@@ -40,6 +40,7 @@ document.querySelector("#submitAfspraak").addEventListener("click",function (eve
                     modT.textContent = "De afspraak is toe gevoegd!";
                     modH.textContent = "Succesvol";
                     $("#infoModal").modal('show');
+                    // setTimeout(function () { window.location.reload(); }, 10)
                     // alert("mooi man");
                 }else{
                     modT.textContent = (JSON.stringify(myJson)).replace(/"/g, "").replace('{', "").replace('}', "");

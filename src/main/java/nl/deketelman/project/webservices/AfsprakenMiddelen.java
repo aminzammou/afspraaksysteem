@@ -21,11 +21,11 @@ import java.util.*;
 public class AfsprakenMiddelen {
 
     @GET
-    @RolesAllowed({"user"})
+    @RolesAllowed({"klant", "werknemer"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAfspraken() {
 
-        List<Afspraak> list = Bedrijf.getalleafspraken();
+        List<Afspraak> list = Bedrijf.getAlles().getalleafspraken();
         if (list == null){
             Map<String, String> messages = new HashMap<>();
             messages.put("error","Afspraak does not exist");
@@ -35,12 +35,12 @@ public class AfsprakenMiddelen {
     }
 
     @GET
-    @RolesAllowed({"user"})
+    @RolesAllowed({"klant", "werknemer"})
     @Path("AfsprakenVandaag")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAfsprakenVanVandaag() {
         LocalDate a = LocalDate.now();
-        List<Afspraak> list = Bedrijf.getAfspraakbyOnlyDate(a);
+        List<Afspraak> list = Bedrijf.getAlles().getAfspraakbyOnlyDate(a);
         if (list == null){
             Map<String, String> messages = new HashMap<>();
             messages.put("error","Afspraak does not exist");
@@ -49,20 +49,38 @@ public class AfsprakenMiddelen {
         return Response.ok(list).build();
     }
 
+    @GET
+    @RolesAllowed({"klant", "werknemer"})
+    @Path("afsprakenKlant")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAfsprakenVanKlant(@Context SecurityContext user) {
+        Principal a = user.getUserPrincipal();
+        String ml = a.getName();
+        System.out.println("dit is de mail van de klant : " + ml);
+        List<Afspraak> list = Bedrijf.getAlles().getKlantAfspraak(ml);
+        if (list == null){
+            Map<String, String> messages = new HashMap<>();
+            messages.put("error","Afspraak does not exist");
+            return Response.status(403).entity(messages).build();
+        }
+        return Response.ok(list).build();
+    }
+
     @POST
 //    @Path("")
+    @RolesAllowed({"klant", "werknemer"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response maakAfspraakAan(@FormParam("klant") String kmail, @FormParam("werknemer") String wmail, @FormParam("datum")  String datumstr, @FormParam("tijd") String tijdstr,@FormParam("beschrijving") String beschrijving){
 //        @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        private LocalDate date;
-        Klant klant = Bedrijf.getKlantByMail(kmail);
-        Werknemer werknemer = Bedrijf.getWerknemerbyMail(wmail);
+        Klant klant = Bedrijf.getAlles().getKlantByMail(kmail);
+        Werknemer werknemer = Bedrijf.getAlles().getWerknemerbyMail(wmail);
         LocalTime tijd = LocalTime.parse(tijdstr);
         LocalDate datum = LocalDate.parse(datumstr);
 //        System.out.println(klant.toString());
 //        System.out.println(werknemer);
 
-        Boolean list = Bedrijf.createAfspraak(datum, tijd, beschrijving, klant, werknemer);
+        Boolean list = Bedrijf.getAlles().createAfspraak(datum, tijd, beschrijving, klant, werknemer);
         if (!list){
             Map<String, String> messages = new HashMap<>();
             messages.put("error"," Er bestaat al een afspraak om deze tijd, kies aub een andere afspraak");

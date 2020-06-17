@@ -6,18 +6,29 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Bedrijf implements Serializable {
-    String naam;
-    private static ArrayList<Afspraak> alleAfspraken = new ArrayList();
-    private static ArrayList<Werknemer> alleWerknemers = new ArrayList();
-    private static ArrayList<Klant> alleKlanten = new ArrayList();
-    public Bedrijf(String nm){
-        naam = nm;
-    }
+//    String naam;
+    private ArrayList<Afspraak> alleAfspraken = new ArrayList();
+    private ArrayList<Werknemer> alleWerknemers = new ArrayList();
+    private ArrayList<Klant> alleKlanten = new ArrayList();
+//    public Bedrijf(String nm){
+//        naam = nm;
+//    }
 
-    public static ArrayList<Afspraak> getalleafspraken() {
+    public ArrayList<Afspraak> getalleafspraken() {
         return alleAfspraken;
     }
-    public static Afspraak getAfspraakbyDate(LocalDate datum, LocalTime tijd) {
+
+    private static Bedrijf alles = new Bedrijf();
+
+    public static Bedrijf getAlles() {
+        return alles;
+    }
+
+    public static void setBedrijf(Bedrijf bedrijf) {
+        alles = bedrijf;
+    }
+
+    public Afspraak getAfspraakbyDate(LocalDate datum, LocalTime tijd) {
         Afspraak nieuwe = null;
         for (Afspraak a : alleAfspraken) {
             if (a.getDatum().equals(datum) && a.getTijd().equals(tijd)) {
@@ -27,7 +38,7 @@ public class Bedrijf implements Serializable {
         return nieuwe;
     }
 
-    public static ArrayList<Afspraak> getAfspraakbyOnlyDate(LocalDate datum) {
+    public ArrayList<Afspraak> getAfspraakbyOnlyDate(LocalDate datum) {
         ArrayList<Afspraak> nieuwe = new ArrayList();
         for (Afspraak a : alleAfspraken) {
             if (a.getDatum().equals(datum)) {
@@ -36,16 +47,26 @@ public class Bedrijf implements Serializable {
         }
         return nieuwe;
     }
+    public ArrayList<Afspraak> getKlantAfspraak(String mail) {
+        Klant k = Bedrijf.getAlles().getKlantByMail(mail);
+        ArrayList<Afspraak> nieuwe = new ArrayList();
+        for (Afspraak a : alleAfspraken) {
+            if (a.getKlant().equals(k)) {
+                nieuwe.add(a);
+            }
+        }
+        return nieuwe;
+    }
 
-    public static ArrayList<Werknemer> getAlleWerknemers() {
+    public ArrayList<Werknemer> getAlleWerknemers() {
         return alleWerknemers;
     }
 
-    public static ArrayList<Klant> getAlleKlanten() {
+    public ArrayList<Klant> getAlleKlanten() {
         return alleKlanten;
     }
 
-    public static boolean createAfspraak(LocalDate datum, LocalTime tijd, String beschrijving, Klant kl, Werknemer we ){
+    public boolean createAfspraak(LocalDate datum, LocalTime tijd, String beschrijving, Klant kl, Werknemer we ){
         boolean resp = false;
         if (getAfspraakbyDate(datum,tijd) != null ){
             resp = false;
@@ -55,7 +76,7 @@ public class Bedrijf implements Serializable {
         }
         return resp;
     }
-    public static Klant getKlantByMail(String mail) {
+    public Klant getKlantByMail(String mail) {
         Klant nieuwe = null;
         for (Klant a : alleKlanten) {
             if (a.getEmail().equals(mail)) {
@@ -64,7 +85,7 @@ public class Bedrijf implements Serializable {
         }
         return nieuwe;
     }
-    public static Werknemer getWerknemerbyMail(String mail) {
+    public Werknemer getWerknemerbyMail(String mail) {
         Werknemer nieuwe = null;
         for (Werknemer a : alleWerknemers) {
             if (a.getEmail().equals(mail)) {
@@ -73,10 +94,10 @@ public class Bedrijf implements Serializable {
         }
         return nieuwe;
     }
-    public static void voegWerknemerToe(Werknemer w){
+    public void voegWerknemerToe(Werknemer w){
         alleWerknemers.add(w);
     }
-    public static void voegKlantToe(Klant k){
+    public void voegKlantToe(Klant k){
         alleKlanten.add(k);
     }
 

@@ -19,7 +19,7 @@ public class KlantMiddelen {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getKlanten() {
-        List<Klant> list = Bedrijf.getAlleKlanten();
+        List<Klant> list = Bedrijf.getAlles().getAlleKlanten();
         if (list == null){
             Map<String, String> messages = new HashMap<>();
             messages.put("error","klant bestaat niet!");

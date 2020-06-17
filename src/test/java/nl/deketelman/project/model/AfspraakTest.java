@@ -1,29 +1,33 @@
-//package nl.deketelman.project.model;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import java.time.LocalDate;
-//import java.time.LocalTime;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//class AfspraakTest {
-//    private LocalDate datumm = LocalDate.now().plusDays(2);
-//    private LocalTime tijdd = LocalTime.now().plusHours(2);
-//
-//    private LocalDate mindatumm = LocalDate.now().minusDays(2);
-//    private LocalTime mintijdd = LocalTime.now().minusHours(2);
-//    Afspraak a = new Afspraak(datumm,tijdd,"hallo");
-//    Werknemer werknemer = new Werknemer("hans", "erde", "hans@hotmail.com",0623222222, "test123");
-//
-//    @Test
-//    public void testCreateAfspraak(){
-//        werknemer.createAfspraak(datumm,tijdd,"hallo");
-//        assertFalse(werknemer.createAfspraak(datumm, tijdd, "hallo daar"));
-//    }
+package nl.deketelman.project.model;
+
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AfspraakTest {
+    Werknemer werknemer = new Werknemer("Jhon Doe", "erde", "werknemer@hotmail.com",0623222222, "test123");
+
+    Date date = new Date();
+    Abonnement abonnement = new Abonnement("sanitair",date);
+    Abonnement abonnement1 = new Abonnement("verwarming",date);
+    Klant klant = new Klant("hans", "rie", "klant@hotmail.com",0621214532, "test123", "leidserijn","teststraat",10,"Utrecht",abonnement);
+
+    LocalTime tijd = LocalTime.now();
+    LocalDate datum = LocalDate.now();
+
+//test voor iteratie 3
+    @Test
+    public void testCreateAfspraak(){
+        Bedrijf.getAlles().createAfspraak(datum, tijd, "test hallo", klant, werknemer);
+        assertEquals(Bedrijf.getAlles().getalleafspraken().size(),1);
+    }
 //    @Test
 //    public void testDateInPastCreateAfspraak(){
 //        assertFalse(werknemer.createAfspraak(mindatumm, mintijdd, "hallo daar"));
 //    }
-//
-//}
+
+}
