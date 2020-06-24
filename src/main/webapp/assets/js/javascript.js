@@ -53,27 +53,6 @@ document.querySelector("#submitAfspraak").addEventListener("click",function (eve
     }
 
     formCheck.classList.add('was-validated');
-
-    // const newTaskInput = document.querySelector('.tijd_input');
-    // const text = newTaskInput.value;
-    // var hours = text.split(":")[0];
-    // var minutes = text.split(":")[1];
-    // const uren = parseInt(hours);
-    // const minuten = parseInt(minutes);
-    // if (uren < 9 || uren > 17){
-    //     alert("Niet goed kies iets anders man")
-    // }else{}
-
-
-
-    // var formData = new FormData(document.querySelector("#postAfspraak"));
-    // var encData = new URLSearchParams(formData.entries());
-    //
-    // fetch("/restservices/afspraken", {method: 'POST', body: encData})
-    //     .then(response => response.json())
-    //     .then(function (myJson) {
-    //         console.log(myJson)
-    //     });
 })
 
 
@@ -84,13 +63,13 @@ function getKlante(event) {
         .then(response => response.json())
         .then(myJson => {
             const selc = document.getElementById("klant");
-
-            for (let i in myJson){
+            console.log(myJson);
+            myJson.forEach(klant=>{
                 const opti = document.createElement("option");
-                opti.text = (JSON.stringify(myJson[i].naam)).replace(/"/g, "");
-                opti.value = (JSON.stringify(myJson[i].email)).replace(/"/g, "");
+                opti.text = (JSON.stringify(klant.naam)).replace(/"/g, "");
+                opti.value = (JSON.stringify(klant.email)).replace(/"/g, "");
                 selc.add(opti, null);
-            }
+            })
 
         } )
         .catch(error => console.log(error));
@@ -164,7 +143,7 @@ function tabelVanVandaag(data) {
         tableRow.querySelector(".klantNaamTable").textContent = afspraak['klant'].naam;
         tableRow.querySelector(".werknemerNaamTable").textContent = afspraak['werknemer'].naam;
         tableRow.querySelector(".datumTable").textContent = `${afspraak.datum.year} - ${afspraak.datum.monthValue} - ${afspraak.datum.dayOfMonth}`;
-        tableRow.querySelector(".tijdTable").textContent = `${JSON.stringify(afspraak.tijd.hour)}:${JSON.stringify(afspraak.tijd.minute)}`;
+        tableRow.querySelector(".tijdTable").textContent = `${("00"+afspraak.tijd.hour).slice(-2)}:${("00"+afspraak.tijd.minute).slice(-2)}`;
         tableRow.querySelector(".beschrijvingTable").textContent = afspraak.beschrijving;
         tabelBody.appendChild(tableRow);
     });
@@ -199,3 +178,11 @@ function logout(event) {
 }
 document.querySelector("#loguit").addEventListener("click",logout);
 
+let gebruiker = document.getElementById("gebruiker");
+let myJson = window.sessionStorage.getItem("myJWT");
+
+if (jwt_decode(myJson).role === "werknemer"){
+    gebruiker.textContent = "Werknemer";
+}else {
+    gebruiker.textContent = "Klant";
+};

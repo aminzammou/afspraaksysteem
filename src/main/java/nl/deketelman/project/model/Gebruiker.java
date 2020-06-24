@@ -24,6 +24,11 @@ public class Gebruiker implements Serializable, Principal {
         alleGebruikers.add(this);
 //        alleGebruikers.add(Bedrijf.getAlles().getAlleKlanten());
     }
+    public static void setGebruikers(){
+        alleGebruikers.addAll(Bedrijf.getAlles().getAlleKlanten());
+        alleGebruikers.addAll(Bedrijf.getAlles().getAlleWerknemers());
+
+    }
     public void setAdmin(){
         role="beheerder";
     }

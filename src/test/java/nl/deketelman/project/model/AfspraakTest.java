@@ -25,6 +25,14 @@ class AfspraakTest {
         Bedrijf.getAlles().createAfspraak(datum, tijd, "test hallo", klant, werknemer);
         assertEquals(Bedrijf.getAlles().getalleafspraken().size(),1);
     }
+
+    @Test
+    public void testDag(){
+        LocalDate datum = Bedrijf.getAlles().getDag(0).plusDays(3);
+        LocalDate datum3 = LocalDate.now();
+        assertEquals(datum,datum3);
+        System.out.println(datum);
+    }
 //    @Test
 //    public void testDateInPastCreateAfspraak(){
 //        assertFalse(werknemer.createAfspraak(mindatumm, mintijdd, "hallo daar"));

@@ -31,18 +31,19 @@ function getWerknemer(event) {
 
 }
 function getLists(event) {
+    var id = 1;
     var fetchOptions = {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + window.sessionStorage.getItem("myJWT")
         }
     }
-
-    fetch("restservices/afspraken", fetchOptions)
+    fetch(`/restservices/afspraken/perWeek/${id}`, fetchOptions)
         .then(response => response.json())
         .then(myJson => tabel(myJson))
         .catch(error => console.log(error));
 }
+
 function tabel(data) {
     let tabelBody = document.getElementById("afsprakenTabel");
     let tableRowTemplate = document.getElementById("tableRowTemplate");
