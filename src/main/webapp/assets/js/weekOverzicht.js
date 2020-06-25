@@ -30,8 +30,22 @@ function getWerknemer(event) {
         .catch(error => console.log(error));
 
 }
+
+var clicks = 0;
+document.querySelector("#opTellen").addEventListener("click",function (event) {
+    clicks += 1;
+    cleanTable();
+    getLists(event)
+    document.getElementById("clicks").innerHTML = clicks;
+})
+document.querySelector("#afTellen").addEventListener("click",function (event) {
+    clicks -= 1;
+    cleanTable();
+    getLists(event)
+    document.getElementById("clicks").innerHTML = clicks;
+})
 function getLists(event) {
-    var id = 1;
+    var id = clicks;
     var fetchOptions = {
         method: 'GET',
         headers: {
@@ -42,6 +56,10 @@ function getLists(event) {
         .then(response => response.json())
         .then(myJson => tabel(myJson))
         .catch(error => console.log(error));
+}
+function cleanTable() {
+    let tabelBody = document.getElementById("afsprakenTabel");
+    tabelBody.innerHTML = " ";
 }
 
 function tabel(data) {
