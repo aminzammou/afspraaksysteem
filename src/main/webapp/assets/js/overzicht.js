@@ -66,8 +66,6 @@ function tabel(data) {
         });
 
 
-
-
         tableRow.querySelector(".klantNaamTable").textContent = afspraak['klant'].naam;
         tableRow.querySelector(".werknemerNaamTable").textContent = afspraak['werknemer'].naam;
         tableRow.querySelector(".datumTable").textContent = `${afspraak.datum.year} - ${afspraak.datum.monthValue} - ${afspraak.datum.dayOfMonth}`;
