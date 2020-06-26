@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class PersistenceManager {
     private final static String ENDPOINT = "https://ironamin.blob.core.windows.net/";
-    private final static String SASTOKEN = "?sv=2019-10-10&ss=b&srt=sco&sp=rwdlacx&se=2020-06-25T18:44:53Z&st=2020-06-17T10:44:53Z&spr=https&sig=wfTiWdsindrUlqOEsXn2xaAa6HnILayK6LkhwUt3EPM%3D";
+    private final static String SASTOKEN = "?sv=2019-10-10&ss=b&srt=sco&sp=rwdlacx&se=2020-07-30T02:22:13Z&st=2020-06-26T18:22:13Z&spr=https&sig=vXtfx00cvsUQDFtzY44gIyStJYShrOpM%2FpSvML5PCys%3D";
     private final static String CONTAINER = "afsprakencontainer";
 
     private static BlobContainerClient blobContainer = new BlobContainerClientBuilder().endpoint(ENDPOINT).sasToken(SASTOKEN).containerName(CONTAINER).buildClient();
