@@ -12,13 +12,10 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Bedrijf implements Serializable {
-//    String naam;
     private ArrayList<Afspraak> alleAfspraken = new ArrayList();
     private ArrayList<Werknemer> alleWerknemers = new ArrayList();
     private ArrayList<Klant> alleKlanten = new ArrayList();
-//    public Bedrijf(String nm){
-//        naam = nm;
-//    }
+
 
     public ArrayList<Afspraak> getalleafspraken() {
         return alleAfspraken;
@@ -34,7 +31,9 @@ public class Bedrijf implements Serializable {
         alles = bedrijf;
         Gebruiker.setGebruikers();
     }
-
+    /**
+     * voor het ophalen van een afspraak met een bepaalde datum en tijd
+     */
     public Afspraak getAfspraakbyDate(LocalDate datum, LocalTime tijd) {
         Afspraak nieuwe = null;
         for (Afspraak a : alleAfspraken) {
@@ -44,7 +43,9 @@ public class Bedrijf implements Serializable {
         }
         return nieuwe;
     }
-
+    /**
+     * voor het ophalen van een afspraak met een bepaalde datum
+     */
     public ArrayList<Afspraak> getAfspraakbyOnlyDate(LocalDate datum) {
         ArrayList<Afspraak> nieuwe = new ArrayList();
         for (Afspraak a : alleAfspraken) {
@@ -55,7 +56,9 @@ public class Bedrijf implements Serializable {
         return nieuwe;
     }
 
-
+    /**
+     * voor het ophalen van de huidige week
+     */
     public LocalDate getDag(int b){
         LocalDate date = LocalDate.now();
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
@@ -66,7 +69,9 @@ public class Bedrijf implements Serializable {
                 .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         return desiredDate;
     }
-
+    /**
+     * voor het ophalen van alle afspraken van de gekoze week
+     */
     public ArrayList<Afspraak> getAfspraakbyWeek(int week) {
         ArrayList<Afspraak> nieuwe = new ArrayList();
         LocalDate man = Bedrijf.getAlles().getDag(week);
@@ -84,7 +89,9 @@ public class Bedrijf implements Serializable {
         }
         return nieuwe;
     }
-
+    /**
+     * voor het herschrijven van een bestaande afspraak
+     */
     public boolean updateAfspraak(LocalDate gevondeDatum, String gevondeMail, LocalTime gevondeTijd, LocalDate datum, LocalTime tijd, String beschrijving, Klant kl, Werknemer we) {
         boolean resp = false;
         Afspraak gevonden = null;
@@ -107,7 +114,9 @@ public class Bedrijf implements Serializable {
 
         return resp;
     }
-
+    /**
+     * voor het ophalen van een klant door middel van een mail
+     */
     public ArrayList<Afspraak> getKlantAfspraak(String mail) {
         Klant k = Bedrijf.getAlles().getKlantByMail(mail);
         ArrayList<Afspraak> nieuwe = new ArrayList();
@@ -118,7 +127,9 @@ public class Bedrijf implements Serializable {
         }
         return nieuwe;
     }
-
+    /**
+     * voor het deleten van een afspraak
+     */
     public boolean deleteAfspraak(LocalDate datum, String mail, LocalTime tijd) {
         boolean resp = false;
         Afspraak gevonden = null;
@@ -144,6 +155,9 @@ public class Bedrijf implements Serializable {
         return alleKlanten;
     }
 
+    /**
+     * voor het aanmaken van een bestaande afspraak
+     */
     public boolean createAfspraak(LocalDate datum, LocalTime tijd, String beschrijving, Klant kl, Werknemer we ){
         boolean resp = false;
         if (getAfspraakbyDate(datum,tijd) != null ){
@@ -154,6 +168,7 @@ public class Bedrijf implements Serializable {
         }
         return resp;
     }
+
     public Klant getKlantByMail(String mail) {
         Klant nieuwe = null;
         for (Klant a : alleKlanten) {

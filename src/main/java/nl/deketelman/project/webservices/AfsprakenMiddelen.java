@@ -84,18 +84,14 @@ public class AfsprakenMiddelen {
     }
 
     @POST
-//    @Path("")
     @RolesAllowed({"klant", "werknemer"})
     @Produces(MediaType.APPLICATION_JSON)
     public Response maakAfspraakAan(@FormParam("klant") String kmail, @FormParam("werknemer") String wmail, @FormParam("datum")  String datumstr, @FormParam("tijd") String tijdstr,@FormParam("beschrijving") String beschrijving){
-//        @DateTimeFormat(pattern = "yyyy-MM-dd")
-//        private LocalDate date;
+
         Klant klant = Bedrijf.getAlles().getKlantByMail(kmail);
         Werknemer werknemer = Bedrijf.getAlles().getWerknemerbyMail(wmail);
         LocalTime tijd = LocalTime.parse(tijdstr);
         LocalDate datum = LocalDate.parse(datumstr);
-//        System.out.println(klant.toString());
-//        System.out.println(werknemer);
 
         Boolean list = Bedrijf.getAlles().createAfspraak(datum, tijd, beschrijving, klant, werknemer);
         if (!list){
@@ -139,7 +135,6 @@ public class AfsprakenMiddelen {
             return Response.status(409).entity(messages).build();
         }
         return Response.ok(list).build();
-
 
 
     }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Klant extends Gebruiker implements Serializable {
     private ArrayList<Afspraak> alleAfspraken = new ArrayList();
     private static ArrayList<Abonnement> alleAbonementen = new ArrayList();
-//    private static ArrayList<Klant> alleKlanten = new ArrayList();
     private Abonnement abonement;
     private String woonplaats;
     private String straat;
@@ -64,19 +63,4 @@ public class Klant extends Gebruiker implements Serializable {
     public String getStad() {
         return stad;
     }
-    //    public boolean createKlant(String nm,String acht,  String em,int tel, String wacht,String wn, String str, int hs, String st){
-//        boolean resp = false;
-//        if (getKlantByMail(em) != null ){
-//            resp = false;
-//        }else {
-//            resp = true;
-//            alleKlanten.add(new Klant(nm, acht, em, tel, wacht,wn,str,hs,st));
-//        }
-//        return resp;
-//
-//    }
-
-//    public ArrayList<Klant> getAlleKlanten() {
-//        return alleKlanten;
-//    }
 }

@@ -8,14 +8,10 @@ function getLists(event) {
 
     fetch("restservices/afspraken/afsprakenKlant", fetchOptions)
         .then(response => response.json())
-        // .then(myJson => document.getElementById("demo").textContent = JSON.stringify(myJson))
-        // .then(myJson => console.log(myJson))
         .then(myJson => tabel(myJson))
         .catch(error => console.log(error));
 }
-// <td>${data[i].naam}</td>
-// <td>${data[i].naam}</td>
-// <td>${JSON.stringify(data[i].datum.month)}</td>
+
 function tabel(data) {
     let tabelBody = document.getElementById("afsprakenTabel");
     let tableRowTemplate = document.getElementById("tableRowTemplate");
@@ -59,3 +55,7 @@ if (jwt_decode(myJson).role === "werknemer"){
 }else {
     gebruiker.textContent = "Klant";
 };
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});

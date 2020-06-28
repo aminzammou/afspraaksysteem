@@ -1,3 +1,7 @@
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
 function getKlante(event) {
 
     fetch("/restservices/klanten", {method: 'GET'})
@@ -94,17 +98,6 @@ function tabel(data) {
         });
         tableRow.querySelector("#updateAfspraak").addEventListener("click", () => {
             $("#updateFormModal").modal('show');
-            // let klant = document.getElementById("klant");
-            // let werknemer = document.getElementById("werknemer");
-            // let datum = document.getElementById("datum");
-            // let tijd = document.getElementById("tijd");
-            // let beschrijving = document.getElementById("beschrijving");
-            //
-            // klant.textContent = afspraak['klant'].naam;
-            // werknemer.textContent = afspraak['werknemer'].naam;
-            // datum.textContent = `${afspraak.datum.year} - ${afspraak.datum.monthValue} - ${afspraak.datum.dayOfMonth}`;
-            // tijd.textContent = `${("00"+afspraak.tijd.hour).slice(-2)}:${("00"+afspraak.tijd.minute).slice(-2)}`;
-            // beschrijving.textContent = afspraak.beschrijving;
 
             const formCheck = document.querySelector('.needs-validation');
             let today = new Date();
@@ -166,7 +159,6 @@ function tabel(data) {
                 formCheck.classList.add('was-validated');
             });
         })
-        // tableRow.appendChild(createDelete(afspraak['klant'].email,afspraak.datum,afspraak.tijd));
 
         tabelBody.appendChild(tableRow);
     });
@@ -190,62 +182,3 @@ if (jwt_decode(myJson).role === "werknemer"){
 
 
 // einde log uit
-// begin update afspraak
-
-// document.querySelector("#updateAfspraak").addEventListener("click",)
-//
-// const formCheck = document.querySelector('.needs-validation');
-// let today = new Date();
-// let dd = today.getDate();
-// let mm = today.getMonth() + 1; //januari is 0!
-// const yyyy = today.getFullYear();
-// if(dd<10){
-//     dd='0'+dd
-// }
-// if(mm<10){
-//     mm='0'+mm
-// }
-// today = yyyy+'-'+mm+'-'+dd;
-// document.getElementById("datum").setAttribute("min", today);
-//
-// document.querySelector("#submitAfspraak").addEventListener("click",function (event) {
-//     if (formCheck.checkValidity() === false){
-//         event.preventDefault();
-//         event.stopPropagation();
-//     }
-//     if (formCheck.checkValidity() === true){
-//         var formData = new FormData(document.querySelector("#putAfspraak"));
-//         var encData = new URLSearchParams(formData.entries());
-//         var fetchOptions = {
-//             method: 'PUT',
-//             body: encData,
-//             headers : {
-//                 'Authorization' : 'Bearer ' + window.sessionStorage.getItem("myJWT")
-//             }
-//         }
-//         let modT = document.getElementById("infoTekst");
-//         let modH = document.getElementById("modelHeader");
-//
-//
-//
-//         fetch("/restservices/afspraken", fetchOptions)
-//             .then(response => response.json())
-//             .then(function (myJson) {
-//                 if (myJson === true){
-//                     modT.textContent = "De afspraak is toe gevoegd!";
-//                     modH.textContent = "Succesvol";
-//                     $("#infoModal").modal('show');
-//                     // setTimeout(function () { window.location.reload(); }, 10)
-//                     // alert("mooi man");
-//                 }else{
-//                     modT.textContent = (JSON.stringify(myJson)).replace(/"/g, "").replace('{', "").replace('}', "");
-//                     modH.textContent = "Unsuccessful";
-//                     $("#infoModal").modal('show');
-//                     // alert(JSON.stringify(myJson));
-//                 }
-//                 // console.log(myJson)
-//             });
-//     }
-//
-//     formCheck.classList.add('was-validated');
-// });

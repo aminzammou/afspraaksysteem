@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <!--    <link href="simple-sidebar.css" rel="stylesheet">-->
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
@@ -98,7 +97,6 @@
                 <h5 class="card-header card-title">Alle afspraken van vandaag :</h5>
                 <div class="card-body text-secondary">
                     <p class="card-text">Datum van vandaag : <span id="datum-header"></span></p>
-<!--                    <input type="button" id="loguit" value="Uitloggen">-->
                 </div>
             </div>
             <div class="table-responsive">
@@ -194,7 +192,6 @@
                                 <label for="klant">Klant</label>
                                 <select class="custom-select form-control" name="klant" id="klant" required>
                                     <option selected disabled value="">Choose...</option>
-                                    <!--                            <option id="tester">klant@hotmail.com</option>-->
                                 </select>
                                 <div class="invalid-feedback">
                                     Kies een klant!
@@ -252,7 +249,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--                <button id="submitAfspraak"  type="submit">Submit form</button>-->
                         <div class="row">
                             <div class="col-2 mt-3">
                                 <input class="btn btn-outline-info" type="button" id="submitAfspraak" value="Verzenden">
@@ -295,21 +291,19 @@
 </div>
 
 
-<footer class="footer bg-light py-5 fixed-bottom">
+<footer class="footer py-5 fixed-bottom">
     <div class="container">
         <div class="row">
             <div class="col-6 col-md">
-                <h5>Overig</h5>
+                <h5 class="footer-title">Overig</h5>
                 <ul class="list-unstyled text-small">
-                    <li><a class="text-muted" href="#">Cool stuff</a></li>
-                    <li><a class="text-muted" href="#">Random feature</a></li>
-                    <li><a class="text-muted" href="#">Team feature</a></li>
+                    <li><a class="a-tekst" href="https://deketelman.nl" target="_blank">Deketelman website</a></li>
                 </ul>
             </div>
             <div class="col-md"></div>
             <div class="col-12 col-md">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
-                <small class="d-block mb-3 text-muted">© 2017-2020</small>
+                <small class="d-block mb-3 a-tekst">© 2017-2020</small>
             </div>
         </div>
     </div>

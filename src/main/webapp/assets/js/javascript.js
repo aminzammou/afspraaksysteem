@@ -46,9 +46,7 @@ document.querySelector("#submitAfspraak").addEventListener("click",function (eve
                     modT.textContent = (JSON.stringify(myJson)).replace(/"/g, "").replace('{', "").replace('}', "");
                     modH.textContent = "Unsuccessful";
                     $("#infoModal").modal('show');
-                    // alert(JSON.stringify(myJson));
                 }
-                // console.log(myJson)
             });
     }
 
@@ -89,14 +87,7 @@ function getWerknemer(event) {
         .catch(error => console.log(error));
 
 }
-// document.getElementById("tester").textContent = JSON.stringify(myJson[0].naam)
-// .then(myJson =>{
-//     const selc = document.getElementById("klant");
-//     const opti = document.createElement("option");
-//     opti.textContent = JSON.stringify(myJson[0].naam);
-//     selc.appendChild(opi);
-//
-// })
+
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
@@ -115,8 +106,6 @@ function getListsVanVandaag(event) {
         .then(myJson => {
             tabelVanVandaag(myJson);
         })
-        // .then(myJson => console.log(myJson))
-        // .then(myJson => tabelVanVandaag(myJson))
         .catch(error => console.log(error));
 }
 function tabelVanVandaag(data) {
@@ -151,26 +140,6 @@ function tabelVanVandaag(data) {
 var van = new Date();
 var date = van.getFullYear()+'-'+(van.getMonth()+1)+'-'+van.getDate();
 document.getElementById('datum-header').innerHTML = date;
-
-// function login(event){
-//     var formData = new FormData(document.querySelector("#loginform"));
-//     var encData = new URLSearchParams(formData.entries());
-//
-//     fetch("/restservices/authentication", {method: 'POST', body: encData})
-//         .then(function(response){
-//             if (response.ok) return response.json();
-//             else throw alert("WRONG username/password");
-//         })
-//         .then(myJson => {
-//             window.sessionStorage.setItem("myJWT",myJson.JWT);
-//             window.location.replace('index.html')
-//             window.location.href = "hoofdpagina.html";
-//
-//         })
-//         .catch(error => console.log(error));
-//
-// }
-// document.querySelector("#login").addEventListener("click",login);
 
 function logout(event) {
     window.sessionStorage.removeItem("myJWT");
